@@ -31,7 +31,7 @@ def load_weights(model, checkpoint_path, gpu_id=0):
     # print('Loading checkpoint %s', checkpoint_path)
     # checkpoint = torch.load(checkpoint_path, map_location=lambda storage, loc: storage.cuda(gpu_id))
     checkpoint = torch.load(checkpoint_path)
-    model.load_state_dict(checkpoint['model'],strict=False)
+    model.module.load_state_dict(checkpoint['model'],strict=False)
     del checkpoint
     torch.cuda.empty_cache()
     return model
